@@ -1,0 +1,76 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
+  <title>MoveFormField.cs</title>
+  <link rel="stylesheet" href="../style.css"/>
+  <script src="../jquery-3.5.1.min.js"></script>
+</head>
+<body>
+<pre><code class = "cs">
+<a name="ln1">// This is an independent project of an individual developer. Dear PVS-Studio, please check it.</a>
+<a name="ln2">// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com</a>
+<a name="ln3">using System;</a>
+<a name="ln4">using System.IO;</a>
+<a name="ln5">using Aspose.Pdf.Forms;</a>
+<a name="ln6">using Aspose.Pdf;</a>
+<a name="ln7"> </a>
+<a name="ln8">namespace Aspose.Pdf.Examples.CSharp.AsposePDF.Forms</a>
+<a name="ln9">{</a>
+<a name="ln10">    public class MoveFormField</a>
+<a name="ln11">    {</a>
+<a name="ln12">        public static void Run()</a>
+<a name="ln13">        {</a>
+<a name="ln14">            // ExStart:MoveFormField</a>
+<a name="ln15">            // The path to the documents directory.</a>
+<a name="ln16">            string dataDir = RunExamples.GetDataDir_AsposePdf_Forms();</a>
+<a name="ln17"> </a>
+<a name="ln18">            // Open document</a>
+<a name="ln19">            Document pdfDocument = new Document(dataDir + &quot;MoveFormField.pdf&quot;);</a>
+<a name="ln20"> </a>
+<a name="ln21">            // Get a field</a>
+<a name="ln22">            TextBoxField textBoxField = pdfDocument.Form[&quot;textbox1&quot;] as TextBoxField;</a>
+<a name="ln23"> </a>
+<a name="ln24">            // Modify field location</a>
+<a name="ln25">            textBoxField.Rect = new Aspose.Pdf.Rectangle(300, 400, 600, 500);</a>
+<a name="ln26"> </a>
+<a name="ln27">            dataDir = dataDir + &quot;MoveFormField_out.pdf&quot;;</a>
+<a name="ln28">            // Save modified document</a>
+<a name="ln29">            pdfDocument.Save(dataDir);</a>
+<a name="ln30">            // ExEnd:MoveFormField</a>
+<a name="ln31">            Console.WriteLine(&quot;\nForm field moved successfully to a new location.\nFile saved at &quot; + dataDir);</a>
+<a name="ln32"> </a>
+<a name="ln33">        }</a>
+<a name="ln34">    }</a>
+<a name="ln35">}</a>
+</code></pre>
+<div class="balloon" rel="19"><p><span style="font-size:18px">&uarr;</span> <a href="https://pvs-studio.com/en/docs/warnings/v3114/" target="_blank">V3114</a> IDisposable object 'pdfDocument' is not disposed before method returns.</p></div>
+<div class="balloon" rel="25"><p><span style="font-size:18px">&uarr;</span> <a href="https://pvs-studio.com/en/docs/warnings/v3149/" target="_blank">V3149</a> Dereferencing the result of 'as' operator can lead to NullReferenceException. Consider inspecting 'textBoxField'.</p></div>
+<link rel="stylesheet" href="highlight.css">
+<script src="highlight.pack.js"></script>
+<script src="highlightjs-line-numbers.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>hljs.initLineNumbersOnLoad();</script>
+<script>
+  $(document).ready(function() {
+      $('.balloon').each(function () {
+          var bl = $(this);
+          var line = bl.attr('rel');
+          var text = $('a[name="ln'+line+'"]').text();
+
+          var space_count = 0;
+          for(var i = 0; i<text.length; i++){
+              var char = text[i];
+              if((char !== ' ')&&(char !== '\t'))break;
+              if(char === '\t')space_count++;
+              space_count++;
+          }
+
+          bl.css('margin-left', space_count*8);
+          $('a[name="ln'+line+'"]').after(bl);
+      });
+
+      window.location = window.location;
+  });
+</script>
+</body>
+</html>

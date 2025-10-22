@@ -1,0 +1,39 @@
+﻿// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
+using Aspose.Pdf.LogicalStructure;
+using Aspose.Pdf.Tagged;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Aspose.Pdf.Examples.CSharp.AsposePDF.Working_with_TaggedPDFs
+{
+    public class CreatePDFWithTaggedImage
+    {
+        public static void Run()
+        {
+            // ExStart:CreatePDFwithTaggedImage
+            // The path to the documents directory.
+            string dataDir = RunExamples.GetDataDir_AsposePdf_WorkingDocuments();
+
+            Document document = new Document();
+            ITaggedContent taggedContent = document.TaggedContent;
+
+            taggedContent.SetTitle("CreatePDFwithTaggedImage");
+            taggedContent.SetLanguage("en-US");
+
+            IllustrationElement figure1 = taggedContent.CreateFigureElement();
+            taggedContent.RootElement.AppendChild(figure1);
+            figure1.AlternativeText = "Aspose Logo";
+            figure1.Title = "Image 1";
+            figure1.SetTag("Fig");
+            // Add image with resolution 300 DPI (by default)
+            figure1.SetImage(dataDir + @"aspose-logo.png");
+
+            // Save PDF Document
+            document.Save(dataDir + "PDFwithTaggedImage.pdf");
+            // ExEnd:CreatePDFwithTaggedImage
+        }
+    }
+}

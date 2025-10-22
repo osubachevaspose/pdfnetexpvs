@@ -1,0 +1,95 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
+  <title>lnkAnnotationLineWidth.cs</title>
+  <link rel="stylesheet" href="../style.css"/>
+  <script src="../jquery-3.5.1.min.js"></script>
+</head>
+<body>
+<pre><code class = "cs">
+<a name="ln1">// This is an independent project of an individual developer. Dear PVS-Studio, please check it.</a>
+<a name="ln2">// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com</a>
+<a name="ln3">using System.IO;</a>
+<a name="ln4">using Aspose.Pdf.Annotations;</a>
+<a name="ln5">using Aspose.Pdf;</a>
+<a name="ln6">using Aspose.Pdf.Facades;</a>
+<a name="ln7">using System;</a>
+<a name="ln8">using System.Collections;</a>
+<a name="ln9">using System.Collections.Generic;</a>
+<a name="ln10"> </a>
+<a name="ln11">namespace Aspose.Pdf.Examples.CSharp.AsposePDF.Annotations</a>
+<a name="ln12">{</a>
+<a name="ln13">    public class LnkAnnotationLineWidth</a>
+<a name="ln14">    {</a>
+<a name="ln15">        public static void Run()</a>
+<a name="ln16">        {</a>
+<a name="ln17">            // ExStart:lnkAnnotationLineWidth</a>
+<a name="ln18">            // The path to the documents directory.</a>
+<a name="ln19">            string dataDir = RunExamples.GetDataDir_AsposePdf_Annotations();</a>
+<a name="ln20"> </a>
+<a name="ln21">            Document doc = new Document();</a>
+<a name="ln22">            doc.Pages.Add();</a>
+<a name="ln23">            IList&lt;Point[]&gt; inkList = new List&lt;Point[]&gt;();</a>
+<a name="ln24">            LineInfo lineInfo = new LineInfo();</a>
+<a name="ln25">            lineInfo.VerticeCoordinate = new float[] { 55, 55, 70, 70, 70, 90, 150, 60 };</a>
+<a name="ln26">            lineInfo.Visibility = true;</a>
+<a name="ln27">            lineInfo.LineColor = System.Drawing.Color.Red;</a>
+<a name="ln28">            lineInfo.LineWidth = 2;</a>
+<a name="ln29">            int length = lineInfo.VerticeCoordinate.Length / 2;</a>
+<a name="ln30">            Aspose.Pdf.Point[] gesture = new Aspose.Pdf.Point[length];</a>
+<a name="ln31">            for (int i = 0; i &lt; length; i++)</a>
+<a name="ln32">            {</a>
+<a name="ln33">               gesture[i] = new Aspose.Pdf.Point(lineInfo.VerticeCoordinate[2 * i], lineInfo.VerticeCoordinate[2 * i + 1]);</a>
+<a name="ln34">            }</a>
+<a name="ln35"> </a>
+<a name="ln36">            inkList.Add(gesture);</a>
+<a name="ln37">            InkAnnotation a1 = new InkAnnotation(doc.Pages[1], new Aspose.Pdf.Rectangle(100, 100, 300, 300), inkList);</a>
+<a name="ln38">            a1.Subject = &quot;Test&quot;;</a>
+<a name="ln39">            a1.Title = &quot;Title&quot;;</a>
+<a name="ln40">            a1.Color = Aspose.Pdf.Color.FromRgb(System.Drawing.Color.Green);</a>
+<a name="ln41">            Border border = new Border(a1);</a>
+<a name="ln42">            border.Width = 3;</a>
+<a name="ln43">            border.Effect = BorderEffect.Cloudy;</a>
+<a name="ln44">            border.Dash = new Dash(1, 1);</a>
+<a name="ln45">            border.Style = BorderStyle.Solid;</a>
+<a name="ln46">            doc.Pages[1].Annotations.Add(a1);</a>
+<a name="ln47"> </a>
+<a name="ln48">            dataDir = dataDir + &quot;lnkAnnotationLineWidth_out.pdf&quot;;</a>
+<a name="ln49">            // Save output file</a>
+<a name="ln50">            doc.Save(dataDir);</a>
+<a name="ln51">            // ExEnd:lnkAnnotationLineWidth</a>
+<a name="ln52">            Console.WriteLine(&quot;\nlnk annotation line width setup successfully.\nFile saved at &quot; + dataDir);</a>
+<a name="ln53">        }</a>
+<a name="ln54">    }</a>
+<a name="ln55">}</a>
+</code></pre>
+<div class="balloon" rel="21"><p><span style="font-size:18px">&uarr;</span> <a href="https://pvs-studio.com/en/docs/warnings/v3114/" target="_blank">V3114</a> IDisposable object 'doc' is not disposed before method returns.</p></div>
+<link rel="stylesheet" href="highlight.css">
+<script src="highlight.pack.js"></script>
+<script src="highlightjs-line-numbers.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>hljs.initLineNumbersOnLoad();</script>
+<script>
+  $(document).ready(function() {
+      $('.balloon').each(function () {
+          var bl = $(this);
+          var line = bl.attr('rel');
+          var text = $('a[name="ln'+line+'"]').text();
+
+          var space_count = 0;
+          for(var i = 0; i<text.length; i++){
+              var char = text[i];
+              if((char !== ' ')&&(char !== '\t'))break;
+              if(char === '\t')space_count++;
+              space_count++;
+          }
+
+          bl.css('margin-left', space_count*8);
+          $('a[name="ln'+line+'"]').after(bl);
+      });
+
+      window.location = window.location;
+  });
+</script>
+</body>
+</html>

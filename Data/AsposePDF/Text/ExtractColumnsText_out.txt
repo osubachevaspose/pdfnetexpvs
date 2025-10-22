@@ -1,0 +1,19 @@
+Evaluation Only. Created with Aspose.PDF. Copyright 2002-2025 Aspose Pty Ltd.
+
+
+                                                Sample PDF File 1 –                     Page 1  
+
+                  This is a sample text on page one in PDF file in which the text replacement is to be performed.  
+                   
+                  In order to replace text in all the pages of a PDF document, you first need to use TextFragmentAbsorber 
+                  to find the particular phrase you want to replace. After that, you need to go through all the 
+                  TextFragments to replace the text and change any other attributes. Once you have done that, you only 
+                  need to save the output PDF using Save method of the Document object. The example elaborates this in 
+                  detail to replace text in a PDF document.                                                            
+Evaluation Only. Created with Aspose.PDF. Copyright 2002-2025 Aspose Pty Ltd.
+
+
+                                              Sample PDF File 1 –                     Page 2  
+                   
+                  This is a sample text on page two in PDF file in which the text replacement is to be performed.  
+                   

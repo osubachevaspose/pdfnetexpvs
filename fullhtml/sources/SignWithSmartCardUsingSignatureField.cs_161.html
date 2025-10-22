@@ -1,0 +1,102 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>SignWithSmartCardUsingSignatureField.cs</title>
+  <link rel="stylesheet" href="../style.css"/>
+  <script src="../jquery-3.5.1.min.js"></script>
+</head>
+<body>
+<pre><code class = "cs">
+<a name="ln1">﻿// This is an independent project of an individual developer. Dear PVS-Studio, please check it.</a>
+<a name="ln2">// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com</a>
+<a name="ln3">using Aspose.Pdf.Facades;</a>
+<a name="ln4">using Aspose.Pdf.Forms;</a>
+<a name="ln5">using System;</a>
+<a name="ln6">using System.Collections.Generic;</a>
+<a name="ln7">using System.IO;</a>
+<a name="ln8">using System.Linq;</a>
+<a name="ln9">using System.Text;</a>
+<a name="ln10"> </a>
+<a name="ln11">namespace Aspose.Pdf.Examples.CSharp.AsposePDF.SecuritySignatures</a>
+<a name="ln12">{</a>
+<a name="ln13">    public class SignWithSmartCardUsingSignatureField</a>
+<a name="ln14">    {</a>
+<a name="ln15">        public static void Run()</a>
+<a name="ln16">        {</a>
+<a name="ln17">            // ExStart:1</a>
+<a name="ln18">            // The path to the documents directory.</a>
+<a name="ln19">            string dataDir = RunExamples.GetDataDir_AsposePdf_SecuritySignatures();</a>
+<a name="ln20"> </a>
+<a name="ln21">            File.Copy(dataDir + &quot;blank.pdf&quot;, dataDir + &quot;externalSignature1.pdf&quot;, true);</a>
+<a name="ln22">            using (FileStream fs = new FileStream(dataDir + &quot;externalSignature1.pdf&quot;, FileMode.Open, FileAccess.ReadWrite))</a>
+<a name="ln23">            {</a>
+<a name="ln24">                using (Document doc = new Document(fs))</a>
+<a name="ln25">                {</a>
+<a name="ln26">                    SignatureField field1 = new SignatureField(doc.Pages[1], new Rectangle(100, 400, 10, 10));</a>
+<a name="ln27"> </a>
+<a name="ln28">                    // Sign with certificate selection in the windows certificate store</a>
+<a name="ln29">                    System.Security.Cryptography.X509Certificates.X509Store store = new System.Security.Cryptography.X509Certificates.X509Store(System.Security.Cryptography.X509Certificates.StoreLocation.CurrentUser);</a>
+<a name="ln30">                    store.Open(System.Security.Cryptography.X509Certificates.OpenFlags.ReadOnly);</a>
+<a name="ln31">                    // Manually chose the certificate in the store</a>
+<a name="ln32">                    System.Security.Cryptography.X509Certificates.X509Certificate2Collection sel = System.Security.Cryptography.X509Certificates.X509Certificate2UI.SelectFromCollection(store.Certificates, null, null, System.Security.Cryptography.X509Certificates.X509SelectionFlag.SingleSelection);</a>
+<a name="ln33"> </a>
+<a name="ln34">                    Aspose.Pdf.Forms.ExternalSignature externalSignature = new Aspose.Pdf.Forms.ExternalSignature(sel[0])</a>
+<a name="ln35">                    {</a>
+<a name="ln36">                        Authority = &quot;Me&quot;,</a>
+<a name="ln37">                        Reason = &quot;Reason&quot;,</a>
+<a name="ln38">                        ContactInfo = &quot;Contact&quot;</a>
+<a name="ln39">                    };</a>
+<a name="ln40"> </a>
+<a name="ln41">                    field1.PartialName = &quot;sig1&quot;;</a>
+<a name="ln42">                    doc.Form.Add(field1, 1);</a>
+<a name="ln43">                    field1.Sign(externalSignature);</a>
+<a name="ln44">                    doc.Save();</a>
+<a name="ln45">                }</a>
+<a name="ln46">            }</a>
+<a name="ln47">            </a>
+<a name="ln48">            using (PdfFileSignature pdfSign = new PdfFileSignature(new Document(dataDir + &quot;externalSignature1.pdf&quot;)))</a>
+<a name="ln49">            {</a>
+<a name="ln50">                IList&lt;string&gt; sigNames = pdfSign.GetSignNames();</a>
+<a name="ln51">                for (int index = 0; index &lt;= sigNames.Count - 1; index++)</a>
+<a name="ln52">                {</a>
+<a name="ln53">                    if (!pdfSign.VerifySigned(sigNames[index]) || !pdfSign.VerifySignature(sigNames[index]))</a>
+<a name="ln54">                    {</a>
+<a name="ln55">                        throw new ApplicationException(&quot;Not verified&quot;);</a>
+<a name="ln56">                    }</a>
+<a name="ln57">                }</a>
+<a name="ln58">            }</a>
+<a name="ln59">            // ExEnd:1  </a>
+<a name="ln60">        }</a>
+<a name="ln61">    }</a>
+<a name="ln62">}</a>
+</code></pre>
+<div class="balloon" rel="29"><p><span style="font-size:18px">&uarr;</span> <a href="https://pvs-studio.com/en/docs/warnings/v3114/" target="_blank">V3114</a> IDisposable object 'store' is not disposed before method returns.</p></div>
+<link rel="stylesheet" href="highlight.css">
+<script src="highlight.pack.js"></script>
+<script src="highlightjs-line-numbers.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>hljs.initLineNumbersOnLoad();</script>
+<script>
+  $(document).ready(function() {
+      $('.balloon').each(function () {
+          var bl = $(this);
+          var line = bl.attr('rel');
+          var text = $('a[name="ln'+line+'"]').text();
+
+          var space_count = 0;
+          for(var i = 0; i<text.length; i++){
+              var char = text[i];
+              if((char !== ' ')&&(char !== '\t'))break;
+              if(char === '\t')space_count++;
+              space_count++;
+          }
+
+          bl.css('margin-left', space_count*8);
+          $('a[name="ln'+line+'"]').after(bl);
+      });
+
+      window.location = window.location;
+  });
+</script>
+</body>
+</html>

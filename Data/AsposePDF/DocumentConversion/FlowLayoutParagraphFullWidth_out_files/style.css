@@ -1,0 +1,37 @@
+.stl_ sup {
+	vertical-align: baseline;
+	position: relative;
+	top: -0.4em;
+}
+.stl_ sub {
+	vertical-align: baseline;
+	position: relative;
+	top: 0.4em;
+}
+.stl_01 {
+	position: absolute;
+	white-space: nowrap;
+}
+.stl_02 {
+	font-size: 8pt;
+	font-family: "Times New Roman";
+	color: #FF0064;
+}
+@font-face {
+	font-family:"DDQCQW+Calibri";
+	src:url("286885c5-0000-0000-0000-000000000000.woff") format("woff");
+}
+.stl_03 {
+	font-size: 11.5pt;
+	font-family: "DDQCQW+Calibri";
+	color: #000000;
+}
+@font-face {
+	font-family:"QVHPII+Calibri";
+	src:url("3353930a-0000-0000-0000-000000000000.woff") format("woff");
+}
+.stl_04 {
+	font-size: 11.5pt;
+	font-family: "QVHPII+Calibri";
+	color: #000000;
+}

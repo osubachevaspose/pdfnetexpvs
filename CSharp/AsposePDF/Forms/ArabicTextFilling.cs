@@ -1,0 +1,36 @@
+﻿// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
+using System;
+using System.IO;
+using Aspose.Pdf.Forms;
+using Aspose.Pdf;
+
+namespace Aspose.Pdf.Examples.CSharp.AsposePDF.Forms
+{
+    public class ArabicTextFilling
+    {
+        public static void Run()
+        {
+            // ExStart:ArabicTextFilling
+            // The path to the documents directory.
+            string dataDir = RunExamples.GetDataDir_AsposePdf_Forms();
+
+            // Load PDF form contents
+            using (FileStream fs = new FileStream(dataDir + "FillFormField.pdf", FileMode.Open, FileAccess.ReadWrite))
+            {
+                // Instantiate Document instance with stream holding form file
+                Aspose.Pdf.Document pdfDocument = new Aspose.Pdf.Document(fs);
+                // Get reference of particular TextBoxField
+                TextBoxField txtFld = pdfDocument.Form["textbox1"] as TextBoxField;
+                // Fill form field with Arabic text
+                txtFld.Value = "يولد جميع الناس أحراراً متساوين في";
+
+                dataDir = dataDir + "ArabicTextFilling_out.pdf";
+                // Save updated document
+                pdfDocument.Save(dataDir);
+                // ExEnd:ArabicTextFilling
+                Console.WriteLine("\nArabic text filled successfully in form field.\nFile saved at " + dataDir);
+            }
+        }
+    }
+}

@@ -1,0 +1,167 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>InlineStructureElements.cs</title>
+  <link rel="stylesheet" href="../style.css"/>
+  <script src="../jquery-3.5.1.min.js"></script>
+</head>
+<body>
+<pre><code class = "cs">
+<a name="ln1">﻿// This is an independent project of an individual developer. Dear PVS-Studio, please check it.</a>
+<a name="ln2">// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com</a>
+<a name="ln3">using Aspose.Pdf.LogicalStructure;</a>
+<a name="ln4">using Aspose.Pdf.Tagged;</a>
+<a name="ln5">using System;</a>
+<a name="ln6">using System.Collections.Generic;</a>
+<a name="ln7">using System.Linq;</a>
+<a name="ln8">using System.Text;</a>
+<a name="ln9"> </a>
+<a name="ln10">namespace Aspose.Pdf.Examples.CSharp.AsposePDF.Working_with_TaggedPDFs</a>
+<a name="ln11">{</a>
+<a name="ln12">    public class InlineStructureElements</a>
+<a name="ln13">    {</a>
+<a name="ln14">        public static void Run()</a>
+<a name="ln15">        {</a>
+<a name="ln16">            // ExStart:InlineStructureElements</a>
+<a name="ln17">            // The path to the documents directory.</a>
+<a name="ln18">            string dataDir = RunExamples.GetDataDir_AsposePdf_WorkingDocuments();</a>
+<a name="ln19"> </a>
+<a name="ln20">            // Create Pdf Document</a>
+<a name="ln21">            Document document = new Document();</a>
+<a name="ln22"> </a>
+<a name="ln23">            // Get Content for work with TaggedPdf</a>
+<a name="ln24">            ITaggedContent taggedContent = document.TaggedContent;</a>
+<a name="ln25"> </a>
+<a name="ln26">            // Set Title and Language for Documnet</a>
+<a name="ln27">            taggedContent.SetTitle(&quot;Tagged Pdf Document&quot;);</a>
+<a name="ln28">            taggedContent.SetLanguage(&quot;en-US&quot;);</a>
+<a name="ln29"> </a>
+<a name="ln30">            // Get Root Structure Element</a>
+<a name="ln31">            StructureElement rootElement = taggedContent.RootElement;</a>
+<a name="ln32"> </a>
+<a name="ln33">            HeaderElement h1 = taggedContent.CreateHeaderElement(1);</a>
+<a name="ln34">            HeaderElement h2 = taggedContent.CreateHeaderElement(2);</a>
+<a name="ln35">            HeaderElement h3 = taggedContent.CreateHeaderElement(3);</a>
+<a name="ln36">            HeaderElement h4 = taggedContent.CreateHeaderElement(4);</a>
+<a name="ln37">            HeaderElement h5 = taggedContent.CreateHeaderElement(5);</a>
+<a name="ln38">            HeaderElement h6 = taggedContent.CreateHeaderElement(6);</a>
+<a name="ln39">            rootElement.AppendChild(h1);</a>
+<a name="ln40">            rootElement.AppendChild(h2);</a>
+<a name="ln41">            rootElement.AppendChild(h3);</a>
+<a name="ln42">            rootElement.AppendChild(h4);</a>
+<a name="ln43">            rootElement.AppendChild(h5);</a>
+<a name="ln44">            rootElement.AppendChild(h6);</a>
+<a name="ln45"> </a>
+<a name="ln46">            SpanElement spanH11 = taggedContent.CreateSpanElement();</a>
+<a name="ln47">            spanH11.SetText(&quot;H1. &quot;);</a>
+<a name="ln48">            h1.AppendChild(spanH11);</a>
+<a name="ln49">            SpanElement spanH12 = taggedContent.CreateSpanElement();</a>
+<a name="ln50">            spanH12.SetText(&quot;Level 1 Header&quot;);</a>
+<a name="ln51">            h1.AppendChild(spanH12);</a>
+<a name="ln52"> </a>
+<a name="ln53">            SpanElement spanH21 = taggedContent.CreateSpanElement();</a>
+<a name="ln54">            spanH21.SetText(&quot;H2. &quot;);</a>
+<a name="ln55">            h2.AppendChild(spanH21);</a>
+<a name="ln56">            SpanElement spanH22 = taggedContent.CreateSpanElement();</a>
+<a name="ln57">            spanH22.SetText(&quot;Level 2 Header&quot;);</a>
+<a name="ln58">            h2.AppendChild(spanH22);</a>
+<a name="ln59"> </a>
+<a name="ln60">            SpanElement spanH31 = taggedContent.CreateSpanElement();</a>
+<a name="ln61">            spanH31.SetText(&quot;H3. &quot;);</a>
+<a name="ln62">            h3.AppendChild(spanH31);</a>
+<a name="ln63">            SpanElement spanH32 = taggedContent.CreateSpanElement();</a>
+<a name="ln64">            spanH32.SetText(&quot;Level 3 Header&quot;);</a>
+<a name="ln65">            h3.AppendChild(spanH32);</a>
+<a name="ln66"> </a>
+<a name="ln67">            SpanElement spanH41 = taggedContent.CreateSpanElement();</a>
+<a name="ln68">            spanH41.SetText(&quot;H4. &quot;);</a>
+<a name="ln69">            h4.AppendChild(spanH41);</a>
+<a name="ln70">            SpanElement spanH42 = taggedContent.CreateSpanElement();</a>
+<a name="ln71">            spanH42.SetText(&quot;Level 4 Header&quot;);</a>
+<a name="ln72">            h4.AppendChild(spanH42);</a>
+<a name="ln73"> </a>
+<a name="ln74">            SpanElement spanH51 = taggedContent.CreateSpanElement();</a>
+<a name="ln75">            spanH51.SetText(&quot;H5. &quot;);</a>
+<a name="ln76">            h5.AppendChild(spanH51);</a>
+<a name="ln77">            SpanElement spanH52 = taggedContent.CreateSpanElement();</a>
+<a name="ln78">            spanH52.SetText(&quot;Level 5 Header&quot;);</a>
+<a name="ln79">            h5.AppendChild(spanH52);</a>
+<a name="ln80"> </a>
+<a name="ln81">            SpanElement spanH61 = taggedContent.CreateSpanElement();</a>
+<a name="ln82">            spanH61.SetText(&quot;H6. &quot;);</a>
+<a name="ln83">            h6.AppendChild(spanH61);</a>
+<a name="ln84">            SpanElement spanH62 = taggedContent.CreateSpanElement();</a>
+<a name="ln85">            spanH62.SetText(&quot;Level 6 Header&quot;);</a>
+<a name="ln86">            h6.AppendChild(spanH62);</a>
+<a name="ln87"> </a>
+<a name="ln88">            ParagraphElement p = taggedContent.CreateParagraphElement();</a>
+<a name="ln89">            p.SetText(&quot;P. &quot;);</a>
+<a name="ln90">            rootElement.AppendChild(p);</a>
+<a name="ln91">            SpanElement span1 = taggedContent.CreateSpanElement();</a>
+<a name="ln92">            span1.SetText(&quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit. &quot;);</a>
+<a name="ln93">            p.AppendChild(span1);</a>
+<a name="ln94">            SpanElement span2 = taggedContent.CreateSpanElement();</a>
+<a name="ln95">            span2.SetText(&quot;Aenean nec lectus ac sem faucibus imperdiet. &quot;);</a>
+<a name="ln96">            p.AppendChild(span2);</a>
+<a name="ln97">            SpanElement span3 = taggedContent.CreateSpanElement();</a>
+<a name="ln98">            span3.SetText(&quot;Sed ut erat ac magna ullamcorper hendrerit. &quot;);</a>
+<a name="ln99">            p.AppendChild(span3);</a>
+<a name="ln100">            SpanElement span4 = taggedContent.CreateSpanElement();</a>
+<a name="ln101">            span4.SetText(&quot;Cras pellentesque libero semper, gravida magna sed, luctus leo. &quot;);</a>
+<a name="ln102">            p.AppendChild(span4);</a>
+<a name="ln103">            SpanElement span5 = taggedContent.CreateSpanElement();</a>
+<a name="ln104">            span5.SetText(&quot;Fusce lectus odio, laoreet nec ullamcorper ut, molestie eu elit. &quot;);</a>
+<a name="ln105">            p.AppendChild(span5);</a>
+<a name="ln106">            SpanElement span6 = taggedContent.CreateSpanElement();</a>
+<a name="ln107">            span6.SetText(&quot;Interdum et malesuada fames ac ante ipsum primis in faucibus. &quot;);</a>
+<a name="ln108">            p.AppendChild(span6);</a>
+<a name="ln109">            SpanElement span7 = taggedContent.CreateSpanElement();</a>
+<a name="ln110">            span7.SetText(&quot;Aliquam lacinia sit amet elit ac consectetur. Donec cursus condimentum ligula, vitae volutpat sem tristique eget. &quot;);</a>
+<a name="ln111">            p.AppendChild(span7);</a>
+<a name="ln112">            SpanElement span8 = taggedContent.CreateSpanElement();</a>
+<a name="ln113">            span8.SetText(&quot;Nulla in consectetur massa. Vestibulum vitae lobortis ante. Nulla ullamcorper pellentesque justo rhoncus accumsan. &quot;);</a>
+<a name="ln114">            p.AppendChild(span8);</a>
+<a name="ln115">            SpanElement span9 = taggedContent.CreateSpanElement();</a>
+<a name="ln116">            span9.SetText(&quot;Mauris ornare eu odio non lacinia. Aliquam massa leo, rhoncus ac iaculis eget, tempus et magna. Sed non consectetur elit. &quot;);</a>
+<a name="ln117">            p.AppendChild(span9);</a>
+<a name="ln118">            SpanElement span10 = taggedContent.CreateSpanElement();</a>
+<a name="ln119">            span10.SetText(&quot;Sed vulputate, quam sed lacinia luctus, ipsum nibh fringilla purus, vitae posuere risus odio id massa. Cras sed venenatis lacus.&quot;);</a>
+<a name="ln120">            p.AppendChild(span10);</a>
+<a name="ln121"> </a>
+<a name="ln122">            // Save Tagged Pdf Document</a>
+<a name="ln123">            document.Save(dataDir + &quot;InlineStructureElements.pdf&quot;);</a>
+<a name="ln124">            // ExEnd:InlineStructureElements</a>
+<a name="ln125">        }</a>
+<a name="ln126">    }</a>
+<a name="ln127">}</a>
+</code></pre>
+<div class="balloon" rel="21"><p><span style="font-size:18px">&uarr;</span> <a href="https://pvs-studio.com/en/docs/warnings/v3114/" target="_blank">V3114</a> IDisposable object 'document' is not disposed before method returns.</p></div>
+<link rel="stylesheet" href="highlight.css">
+<script src="highlight.pack.js"></script>
+<script src="highlightjs-line-numbers.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>hljs.initLineNumbersOnLoad();</script>
+<script>
+  $(document).ready(function() {
+      $('.balloon').each(function () {
+          var bl = $(this);
+          var line = bl.attr('rel');
+          var text = $('a[name="ln'+line+'"]').text();
+
+          var space_count = 0;
+          for(var i = 0; i<text.length; i++){
+              var char = text[i];
+              if((char !== ' ')&&(char !== '\t'))break;
+              if(char === '\t')space_count++;
+              space_count++;
+          }
+
+          bl.css('margin-left', space_count*8);
+          $('a[name="ln'+line+'"]').after(bl);
+      });
+
+      window.location = window.location;
+  });
+</script>
+</body>
+</html>

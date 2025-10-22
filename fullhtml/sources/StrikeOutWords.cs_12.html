@@ -1,0 +1,109 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>StrikeOutWords.cs</title>
+  <link rel="stylesheet" href="../style.css"/>
+  <script src="../jquery-3.5.1.min.js"></script>
+</head>
+<body>
+<pre><code class = "cs">
+<a name="ln1">﻿// This is an independent project of an individual developer. Dear PVS-Studio, please check it.</a>
+<a name="ln2">// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com</a>
+<a name="ln3">using System;</a>
+<a name="ln4">using System.IO;</a>
+<a name="ln5">using Aspose.Pdf.Annotations;</a>
+<a name="ln6">using Aspose.Pdf;</a>
+<a name="ln7"> </a>
+<a name="ln8">namespace Aspose.Pdf.Examples.CSharp.AsposePDF.Annotations</a>
+<a name="ln9">{</a>
+<a name="ln10">    public class StrikeOutWords</a>
+<a name="ln11">    {</a>
+<a name="ln12">        public static void Run()</a>
+<a name="ln13">        {</a>
+<a name="ln14">            </a>
+<a name="ln15">            // ExStart:StrikeOutWords</a>
+<a name="ln16">            // The path to the documents directory.</a>
+<a name="ln17">            string dataDir = RunExamples.GetDataDir_AsposePdf_Annotations();</a>
+<a name="ln18"> </a>
+<a name="ln19">            // Open document</a>
+<a name="ln20">            Document document = new Document(dataDir + &quot;input.pdf&quot;);</a>
+<a name="ln21"> </a>
+<a name="ln22">            // Create TextFragment Absorber instance to search particular text fragment</a>
+<a name="ln23">            Aspose.Pdf.Text.TextFragmentAbsorber textFragmentAbsorber = new Aspose.Pdf.Text.TextFragmentAbsorber(&quot;Estoque&quot;);</a>
+<a name="ln24">            // Iterate through pages of PDF document</a>
+<a name="ln25">            for (int i = 1; i &lt;= document.Pages.Count; i++)</a>
+<a name="ln26">            {</a>
+<a name="ln27">                // Get first page of PDF document</a>
+<a name="ln28">                Page page = document.Pages[1];</a>
+<a name="ln29">                page.Accept(textFragmentAbsorber);</a>
+<a name="ln30">            }</a>
+<a name="ln31"> </a>
+<a name="ln32">            // Create a collection of Absorbed text</a>
+<a name="ln33">            Aspose.Pdf.Text.TextFragmentCollection textFragmentCollection = textFragmentAbsorber.TextFragments;</a>
+<a name="ln34"> </a>
+<a name="ln35">            // Iterate on above collection</a>
+<a name="ln36">            for (int j = 1; j &lt;= textFragmentCollection.Count; j++)</a>
+<a name="ln37">            {</a>
+<a name="ln38">                Aspose.Pdf.Text.TextFragment textFragment = textFragmentCollection[j];</a>
+<a name="ln39"> </a>
+<a name="ln40">                // Get rectangular dimensions of TextFragment object  	</a>
+<a name="ln41">                Aspose.Pdf.Rectangle rect = new Aspose.Pdf.Rectangle(</a>
+<a name="ln42">                            (float)textFragment.Position.XIndent,</a>
+<a name="ln43">                            (float)textFragment.Position.YIndent,</a>
+<a name="ln44">                            (float)textFragment.Position.XIndent +</a>
+<a name="ln45">                            (float)textFragment.Rectangle.Width,</a>
+<a name="ln46">                            (float)textFragment.Position.YIndent +</a>
+<a name="ln47">                            (float)textFragment.Rectangle.Height);</a>
+<a name="ln48"> </a>
+<a name="ln49">                // Instantiate StrikeOut Annotation instance</a>
+<a name="ln50">                StrikeOutAnnotation strikeOut = new StrikeOutAnnotation(textFragment.Page, rect);</a>
+<a name="ln51">                // Set opacity for annotation</a>
+<a name="ln52">                strikeOut.Opacity = .80f;</a>
+<a name="ln53">                // Set the border for annotation instance</a>
+<a name="ln54">                strikeOut.Border = new Border(strikeOut);</a>
+<a name="ln55">                // Set the color of annotation</a>
+<a name="ln56">                strikeOut.Color = Aspose.Pdf.Color.Red;</a>
+<a name="ln57">                // Add annotation to annotations collection of TextFragment</a>
+<a name="ln58">                textFragment.Page.Annotations.Add(strikeOut);</a>
+<a name="ln59">            }</a>
+<a name="ln60">            dataDir = dataDir + &quot;StrikeOutWords_out.pdf&quot;;</a>
+<a name="ln61">            document.Save(dataDir);</a>
+<a name="ln62">            // ExEnd:StrikeOutWords    </a>
+<a name="ln63">            Console.WriteLine(&quot;\nWords strikeout successfully.\nFile saved at &quot; + dataDir);</a>
+<a name="ln64"> </a>
+<a name="ln65">        }</a>
+<a name="ln66">    }</a>
+<a name="ln67">}</a>
+</code></pre>
+<div class="balloon" rel="28"><p><span style="font-size:18px">&uarr;</span> <a href="https://pvs-studio.com/en/docs/warnings/v3102/" target="_blank">V3102</a> Suspicious access to element of 'document.Pages' object by a constant index inside a loop.</p></div>
+<div class="balloon" rel="36"><p><span style="font-size:18px">&uarr;</span> <a href="https://pvs-studio.com/en/docs/warnings/v3218/" target="_blank">V3218</a> The 'j &lt;= textFragmentCollection.Count' loop condition may be incorrect due to an off-by-one error. To avoid an index out of bounds error, use the '&lt;' operator instead of '&lt;='.</p></div>
+<div class="balloon" rel="20"><p><span style="font-size:18px">&uarr;</span> <a href="https://pvs-studio.com/en/docs/warnings/v3114/" target="_blank">V3114</a> IDisposable object 'document' is not disposed before method returns.</p></div>
+<link rel="stylesheet" href="highlight.css">
+<script src="highlight.pack.js"></script>
+<script src="highlightjs-line-numbers.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>hljs.initLineNumbersOnLoad();</script>
+<script>
+  $(document).ready(function() {
+      $('.balloon').each(function () {
+          var bl = $(this);
+          var line = bl.attr('rel');
+          var text = $('a[name="ln'+line+'"]').text();
+
+          var space_count = 0;
+          for(var i = 0; i<text.length; i++){
+              var char = text[i];
+              if((char !== ' ')&&(char !== '\t'))break;
+              if(char === '\t')space_count++;
+              space_count++;
+          }
+
+          bl.css('margin-left', space_count*8);
+          $('a[name="ln'+line+'"]').after(bl);
+      });
+
+      window.location = window.location;
+  });
+</script>
+</body>
+</html>
